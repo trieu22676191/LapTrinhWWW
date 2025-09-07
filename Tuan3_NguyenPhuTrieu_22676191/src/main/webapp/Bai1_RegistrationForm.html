@@ -1,0 +1,255 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b3e5fc; /* Một màu nền duy nhất */
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #0d47a1;
+        }
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 8px;
+            vertical-align: top;
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            padding: 6px;
+            border: 1px solid #888;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="email"], select {
+            width: 250px;
+        }
+        textarea {
+            resize: none;
+            width: 250px;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 15px;
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #0277bd;
+            color: #fff;
+        }
+        input[type="reset"] {
+            background-color: #455a64;
+            color: #fff;
+        }
+        .dob-select select {
+            margin-right: 5px;
+            width: 80px;
+        }
+        .hobbies label {
+            margin-right: 15px;
+            display: inline-block;
+        }
+        .qualification-table {
+            border: 2px solid #0288d1;
+            border-collapse: collapse;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .qualification-table td, .qualification-table th {
+            border: 1px solid #0288d1;
+            padding: 6px;
+            text-align: center;
+        }
+        .qualification-table th {
+            background-color: #81d4fa;
+        }
+    </style>
+</head>
+<body>
+<h2>Registration Form</h2>
+<form action="registration-form" method="GET" name="formDangKy">
+    <table>
+        <tr>
+            <td>First name</td>
+            <td><input type="text" name="firstName" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td><input type="text" name="lastName" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td>Date of birth</td>
+            <td class="dob-select">
+                <select name="day" id="day"></select>
+                <select name="month" id="month" onchange="updateDays()"></select>
+                <select name="year" id="year" onchange="updateDays()"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+            <td>Mobile number</td>
+            <td><input type="text" name="mobileNumber" maxlength="10"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <label><input type="radio" name="gender" value="Male"> Male</label>
+                <label><input type="radio" name="gender" value="Female"> Female</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><textarea name="address" rows="3"></textarea></td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td><input type="text" name="city" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td>Pin code</td>
+            <td><input type="text" name="pinCode" maxlength="6"></td>
+        </tr>
+        <tr>
+            <td>State</td>
+            <td><input type="text" name="state" maxlength="30"></td>
+        </tr>
+        <tr>
+            <td>Country</td>
+            <td><input type="text" name="country" value="VietNam"></td>
+        </tr>
+        <tr>
+            <td>Hobbies</td>
+            <td class="hobbies">
+                <label><input type="checkbox" name="hobbies" value="Drawing"> Drawing</label>
+                <label><input type="checkbox" name="hobbies" value="Singing"> Singing</label>
+                <label><input type="checkbox" name="hobbies" value="Dancing"> Dancing</label>
+                <label><input type="checkbox" name="hobbies" value="Sketching"> Sketching</label>
+                <label><input type="checkbox" name="hobbies" value="Others"> Others</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Qualification</td>
+            <td>
+                <table class="qualification-table">
+                    <tr>
+                        <th>Sl.No.</th>
+                        <th>Examination</th>
+                        <th>Board</th>
+                        <th>Percentage</th>
+                        <th>Year of Passing</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Class X</td>
+                        <td><input type="text" name="board1" maxlength="10"></td>
+                        <td><input type="text" name="percent1" maxlength="5"></td>
+                        <td><input type="text" name="year1" maxlength="4"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Class XII</td>
+                        <td><input type="text" name="board2" maxlength="10"></td>
+                        <td><input type="text" name="percent2" maxlength="5"></td>
+                        <td><input type="text" name="year2" maxlength="4"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Graduation</td>
+                        <td><input type="text" name="board3" maxlength="10"></td>
+                        <td><input type="text" name="percent3" maxlength="5"></td>
+                        <td><input type="text" name="year3" maxlength="4"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Masters</td>
+                        <td><input type="text" name="board4" maxlength="10"></td>
+                        <td><input type="text" name="percent4" maxlength="5"></td>
+                        <td><input type="text" name="year4" maxlength="4"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>Course applies for</td>
+            <td>
+                <label><input type="radio" name="course" value="BCA"> BCA</label>
+                <label><input type="radio" name="course" value="B.Com"> B.Com</label>
+                <label><input type="radio" name="course" value="B.Sc"> B.Sc</label>
+                <label><input type="radio" name="course" value="B.A"> B.A</label>
+            </td>
+        </tr>
+    </table>
+
+    <div class="actions">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </div>
+</form>
+
+<script>
+    function updateDays() {
+        const daySelect = document.getElementById("day");
+        const monthSelect = document.getElementById("month");
+        const yearSelect = document.getElementById("year");
+
+        const month = parseInt(monthSelect.value);
+        const year = parseInt(yearSelect.value);
+        let daysInMonth = 31;
+
+        if (month === 4 || month === 6 || month === 9 || month === 11) {
+            daysInMonth = 30;
+        } else if (month === 2) {
+            daysInMonth = ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) ? 29 : 28;
+        }
+
+        daySelect.innerHTML = "";
+        for (let i = 1; i <= daysInMonth; i++) {
+            const option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            daySelect.appendChild(option);
+        }
+    }
+
+    window.onload = function() {
+        const monthSelect = document.getElementById("month");
+        const yearSelect = document.getElementById("year");
+
+        for (let m = 1; m <= 12; m++) {
+            const option = document.createElement("option");
+            option.value = m;
+            option.text = m;
+            monthSelect.appendChild(option);
+        }
+
+        for (let y = 1980; y <= 2025; y++) {
+            const option = document.createElement("option");
+            option.value = y;
+            option.text = y;
+            yearSelect.appendChild(option);
+        }
+        updateDays();
+    }
+</script>
+</body>
+</html>
