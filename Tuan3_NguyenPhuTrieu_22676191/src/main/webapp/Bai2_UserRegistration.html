@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            background-color: white;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-row input {
+            flex: 1;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #4472C4;
+        }
+
+        .birthday-section {
+            margin-bottom: 15px;
+        }
+
+        .birthday-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .birthday-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        select {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        .gender-section {
+            margin-bottom: 25px;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .gender-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        input[type="radio"] {
+            margin: 0;
+        }
+
+        label {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #4472C4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #365a96;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>User Registration Form</h1>
+
+    <form action="UserRegistrationServlet" method="post" id="registrationForm">
+        <!-- Name Fields -->
+        <div class="form-row">
+            <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
+        </div>
+
+        <!-- Email Fields -->
+        <input type="email" name="email" id="email" placeholder="Your Email" required style="margin-bottom: 15px;">
+        <input type="email" name="confirmEmail" id="confirmEmail" placeholder="Re-enter Email" required style="margin-bottom: 15px;">
+        <div class="error-message" id="emailError">Emails do not match!</div>
+
+        <!-- Password Field -->
+        <input type="password" name="password" id="password" placeholder="New Password" required style="margin-bottom: 15px;">
+
+        <!-- Birthday Section -->
+        <div class="birthday-section">
+            <label class="birthday-label">Birthday</label>
+            <div class="birthday-row">
+                <select name="month" id="month" required></select>
+                <select name="day" id="day" required></select>
+                <select name="year" id="year" required></select>
+            </div>
+        </div>
+
+        <!-- Gender Selection -->
+        <div class="gender-section">
+            <div class="gender-options">
+                <div class="gender-option">
+                    <input type="radio" name="gender" id="female" value="female" required>
+                    <label for="female">Female</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" name="gender" id="male" value="male" required>
+                    <label for="male">Male</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
+</div>
+
+<script>
+    // Email validation
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        const email = document.getElementById('email').value;
+        const confirmEmail = document.getElementById('confirmEmail').value;
+        const errorDiv = document.getElementById('emailError');
+
+        if (email !== confirmEmail) {
+            e.preventDefault();
+            errorDiv.style.display = 'block';
+            return false;
+        } else {
+            errorDiv.style.display = 'none';
+        }
+    });
+
+    document.getElementById('confirmEmail').addEventListener('input', function() {
+        document.getElementById('emailError').style.display = 'none';
+    });
+
+    // Populate Year, Month, Day
+    const yearSelect = document.getElementById('year');
+    const monthSelect = document.getElementById('month');
+    const daySelect = document.getElementById('day');
+
+    function populateYears() {
+        const currentYear = new Date().getFullYear();
+        for (let i = currentYear; i >= 1900; i--) {
+            const opt = document.createElement("option");
+            opt.value = i;
+            opt.text = i;
+            yearSelect.add(opt);
+        }
+    }
+
+    function populateMonths() {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        months.forEach((m, idx) => {
+            const opt = document.createElement("option");
+            opt.value = idx + 1;
+            opt.text = m;
+            monthSelect.add(opt);
+        });
+    }
+
+    function populateDays(month, year) {
+        daySelect.innerHTML = "";
+        let daysInMonth = new Date(year, month, 0).getDate(); // auto tính cả năm nhuận
+        for (let d = 1; d <= daysInMonth; d++) {
+            const opt = document.createElement("option");
+            opt.value = d;
+            opt.text = d;
+            daySelect.add(opt);
+        }
+    }
+
+    // Khởi tạo
+    populateYears();
+    populateMonths();
+    populateDays(new Date().getMonth() + 1, new Date().getFullYear());
+
+    // Khi đổi tháng hoặc năm thì cập nhật ngày
+    monthSelect.addEventListener("change", function() {
+        populateDays(monthSelect.value, yearSelect.value);
+    });
+    yearSelect.addEventListener("change", function() {
+        populateDays(monthSelect.value, yearSelect.value);
+    });
+</script>
+</body>
+</html>
