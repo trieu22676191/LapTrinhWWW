@@ -1,0 +1,108 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="user-management" transaction-type="RESOURCE_LOCAL">
+        <!-- Persistence provider -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>iuh.fit.se.bai1_jsp.model.User</class>
+        <class>iuh.fit.se.bai3_jsp.model.TinTuc</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="org.mariadb.jdbc.Driver" />
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mariadb://localhost:3306/quanlydanhmuc" />
+            <property name="jakarta.persistence.jdbc.user" value="root" />
+            <property name="jakarta.persistence.jdbc.password" value="sapassword" />
+            <!-- Automatically export the schema -->
+            <property name="jakarta.persistence.schema-generation.database.action"
+                      value="none" />
+            <!-- Echo all executed SQL to console -->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.highlight_sql" value="true" />
+        </properties>
+    </persistence-unit>
+</persistence>
+
+
+<!-- Jakarta Servlet API -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Jakarta Annotations API -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- JSTL (Jakarta Tags Core) -->
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <!-- Mariadb Client -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <!-- Jakarta Persistence API -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <!-- Hibernate core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.1.Final</version>
+        </dependency>
+        <!-- Hibernate validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.2.Final</version>
+        </dependency>
+
+
+
+-- Bảng DANHMUC
+CREATE TABLE IF NOT EXISTS DANHMUC (
+  MADM INT PRIMARY KEY AUTO_INCREMENT,
+  TENDANHMUC VARCHAR(100) NOT NULL,
+  NGUOIQUANLY VARCHAR(100),
+  GHICHU TEXT
+);
+
+-- Bảng TINTUC (MATT tự tăng)
+CREATE TABLE IF NOT EXISTS TINTUC (
+  MATT INT PRIMARY KEY AUTO_INCREMENT,
+  TIEUDE VARCHAR(255) NOT NULL,
+  NOIDUNGTT VARCHAR(255) NOT NULL,
+  LIENKET VARCHAR(255) NOT NULL,
+  MADM INT,
+  FOREIGN KEY (MADM) REFERENCES DANHMUC(MADM) ON DELETE SET NULL
+);
+
+-- Dữ liệu mẫu
+INSERT INTO DANHMUC (TENDANHMUC, NGUOIQUANLY, GHICHU)
+VALUES ('Thể thao','Nguyễn Văn A','Tin thể thao'),
+       ('Công nghệ','Trần Thị B','Tin công nghệ'),
+       ('Giải trí','Lê Thị C','Tin giải trí');
+
+INSERT INTO TINTUC (TIEUDE, NOIDUNGTT, LIENKET, MADM)
+VALUES ('Chung kết bóng đá','Trận chung kết kịch tính','http://example.com/tt1',1),
+       ('Ra mắt sản phẩm mới','Hãng X ra mắt sản phẩm','http://example.com/tt2',2);

@@ -41,4 +41,47 @@ public class UserImpl implements UserDAO {
         }
         return null;
     }
+
+
+    public User findById(int id) {
+        try {
+            return em.find(User.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public boolean update(User nv) {
+        EntityTransaction tr = em.getTransaction();
+        try {
+            tr.begin();
+            em.merge(nv);
+            tr.commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (tr.isActive()) tr.rollback();
+        }
+        return false;
+    }
+
+    public boolean delete(int maNV) {
+        EntityTransaction tr = em.getTransaction();
+        try {
+            tr.begin();
+            User nv = em.find(User.class, maNV);
+            if (nv != null) {
+                em.remove(nv);
+                tr.commit();
+                return true;
+            }
+            tr.rollback();
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (tr.isActive()) tr.rollback();
+        }
+        return false;
+    }
 }
