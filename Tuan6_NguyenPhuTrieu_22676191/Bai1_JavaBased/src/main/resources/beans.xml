@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student1" class="iuh.fit.se.beans.Student">
+        <property name="id" value="101"/>
+        <property name="name" value="Nguyen Van B"/>
+    </bean>
+
+    <bean id="class1" class="iuh.fit.se.model.Class_">
+        <property name="classId" value="DHKTPM17C"/>
+        <property name="className" value="Công nghệ phần mềm 17C"/>
+    </bean>
+
+
+    <bean id="ClassProperties"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:class.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="class2" class="iuh.fit.se.model.Class_">
+        <property name="classId" value="DHKTPM17"/>
+        <property name="className" value="${className}"/>
+    </bean>
+
+</beans>

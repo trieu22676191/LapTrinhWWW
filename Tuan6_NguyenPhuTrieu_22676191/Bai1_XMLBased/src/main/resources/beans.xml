@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address1" class="iuh.fit.se.beans.Address">
+        <property name="city" value="HCM"/>
+        <property name="country" value="Vietnam"/>
+    </bean>
+
+    <bean id="student1" class="iuh.fit.se.beans.Student">
+        <property name="id" value="001"/>
+        <property name="name" value="Nguyen Van A"/>
+        <property name="address" ref="address1"/>
+    </bean>
+
+</beans>
