@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1417721b-4dd4-46ca-99bf-81432b3c0f01" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Bai_1/src/main/java/iuh/fit/se/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai_1/src/main/java/iuh/fit/se/beans/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai_1/src/main/java/iuh/fit/se/beans/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Bai_1/src/main/resources/beans.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1417721b-4dd4-46ca-99bf-81432b3c0f01" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,9 +13,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "trieu22676191"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/trieu22676191/LapTrinhWWW.git",
+    "accountId": "4e6384f2-3611-4597-954f-1f122a1dddbf"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="33wsLetqvMpz8ULe3paqidTYaVm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -30,12 +37,24 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "T:/Trieu/LapTrinhWWW/Tuan6_NguyenPhuTrieu_22676191",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Java_WWW/BTTH/Tuan6_NguyenPhuTrieu_22676191",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,6 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1760239414173</updated>
       <workItem from="1760239415160" duration="175000" />
+      <workItem from="1760275548458" duration="27000" />
     </task>
     <servers />
   </component>
