@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test API</title>
+</head>
+<body>
+    <h1>Test API Backend</h1>
+    
+    <h2>Test 1: Nhà Cung Cấp</h2>
+    <button onclick="testNCC()">Test API Nhà Cung Cấp</button>
+    <div id="resultNCC"></div>
+    
+    <h2>Test 2: Điện Thoại</h2>
+    <button onclick="testDT()">Test API Điện Thoại</button>
+    <div id="resultDT"></div>
+    
+    <script>
+        const API_URL = 'http://localhost:8081';
+        
+        async function testNCC() {
+            const div = document.getElementById('resultNCC');
+            div.innerHTML = 'Đang test...';
+            
+            try {
+                const response = await fetch(API_URL + '/api/nhacungcap');
+                const data = await response.json();
+                
+                div.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                console.log('Nhà cung cấp:', data);
+            } catch (error) {
+                div.innerHTML = '<p style="color: red;">Lỗi: ' + error.message + '</p>';
+                console.error('Lỗi:', error);
+            }
+        }
+        
+        async function testDT() {
+            const div = document.getElementById('resultDT');
+            div.innerHTML = 'Đang test...';
+            
+            try {
+                const response = await fetch(API_URL + '/api/dienthoai');
+                const data = await response.json();
+                
+                div.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                console.log('Điện thoại:', data);
+            } catch (error) {
+                div.innerHTML = '<p style="color: red;">Lỗi: ' + error.message + '</p>';
+                console.error('Lỗi:', error);
+            }
+        }
+    </script>
+</body>
+</html>
+
